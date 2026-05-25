@@ -17,18 +17,20 @@
             min-height: 100vh;
             overflow: hidden;
             text-align: center;
+            user-select: none;
         }
 
         /* কার্ড ডিজাইন */
         .card {
-            background: rgba(255, 255, 255, 0.07);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(212, 175, 55, 0.5);
-            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 2px solid rgba(212, 175, 55, 0.6);
+            padding: 35px 25px;
             border-radius: 25px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(212, 175, 55, 0.2);
-            max-width: 450px;
-            width: 90%;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(212, 175, 55, 0.3);
+            max-width: 420px;
+            width: 85%;
             z-index: 10;
             animation: fadeIn 1.5s ease-out;
             position: relative;
@@ -37,31 +39,32 @@
         h1 {
             color: #d4af37;
             font-size: 32px;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+            margin-bottom: 5px;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.7);
         }
 
         .name {
             color: #ff4757;
-            font-size: 26px;
+            font-size: 28px;
             font-weight: bold;
             display: block;
-            margin: 15px 0;
-            text-shadow: 0 0 8px rgba(255, 71, 87, 0.5);
+            margin: 12px 0;
+            text-shadow: 0 0 10px rgba(255, 71, 87, 0.6);
         }
 
         p {
             font-size: 18px;
             line-height: 1.6;
             color: #f1f2f6;
+            margin: 10px 0;
         }
 
         .advance {
-            font-size: 20px;
+            font-size: 22px;
             color: #2ed573;
             font-weight: bold;
-            margin-top: 25px;
-            text-shadow: 0 0 5px rgba(46, 213, 115, 0.5);
+            margin-top: 20px;
+            text-shadow: 0 0 8px rgba(46, 213, 115, 0.6);
         }
 
         /* সাউন্ড বাটন */
@@ -69,35 +72,36 @@
             background: #d4af37;
             color: #1a052e;
             border: none;
-            padding: 10px 20px;
-            font-size: 14px;
+            padding: 12px 25px;
+            font-size: 15px;
             font-weight: bold;
-            border-radius: 20px;
+            border-radius: 25px;
             cursor: pointer;
-            margin-top: 15px;
+            margin-top: 20px;
             transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
         }
         .sound-btn:hover {
             transform: scale(1.05);
             background: #fff;
         }
 
-        /* গরুর অ্যানিমেশন */
+        /* ১০০% ওয়ার্কিং গরুর ছবি (SVG) এবং অ্যানিমেশন */
         .cow-container {
-            margin-top: 20px;
+            margin-top: 15px;
         }
-        .cow {
-            width: 100px;
-            height: auto;
-            animation: bounce 2s infinite ease-in-out;
+        .cow-svg {
+            width: 90px;
+            height: 90px;
+            animation: bounce 1.8s infinite ease-in-out;
         }
 
-        /* বাজি ও লাভ রিয়্যাক্ট অ্যানিমেশন ইফেক্ট */
+        /* বাজি ও লাভ রিয়্যাক্ট অ্যানিমেশন */
         .particle {
             position: absolute;
             pointer-events: none;
             border-radius: 50%;
-            animation: explode 1s ease-out forwards;
+            animation: explode 0.8s ease-out forwards;
         }
 
         .heart {
@@ -106,6 +110,7 @@
             font-size: 24px;
             pointer-events: none;
             animation: fall 3s linear infinite;
+            z-index: 1;
         }
 
         /* Animations */
@@ -115,8 +120,8 @@
         }
 
         @keyframes bounce {
-            0%, 100% { transform: translateY(0) scaleX(1); }
-            50% { transform: translateY(-15px) scaleX(1.05); }
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-18px) scale(1.05); }
         }
 
         @keyframes explode {
@@ -132,41 +137,62 @@
 </head>
 <body onclick="playCelebration()">
 
-    <!-- ব্যাকগ্রাউন্ড অডিও (অনলাইন ফ্রি ফায়ারওয়ার্ক সাউন্ড) -->
-    <audio id="firework-sound" loop>
-        <source src="https://assets.mixkit.co/active_storage/sfx/1676/1676-84.wav" type="audio/wav">
+    <!-- ব্যাকগ্রাউন্ড ফায়ারওয়ার্ক সাউন্ড (বিকল্প ও শক্তিশালী সোর্স) -->
+    <audio id="firework-sound" loop preload="auto">
+        <source src="https://www.soundjay.com/mechanical/firework-explode-1.mp3" type="audio/mp3">
     </audio>
 
     <div class="card">
         <h1>অগ্রিম ঈদ মোবারক!</h1>
-        <p>প্রিয়,</p>
-        <span class="name">প্রিয় বন্ধু আনাবিয়া ইসলাম</span>
+        <p>প্রিয় বন্ধু,</p>
+        <span class="name">আনাবিয়া ইসলাম</span>
         <p>আসন্ন পবিত্র ঈদুল আজহার অনেক অনেক শুভেচ্ছা ও ভালোবাসা রইল। ত্যাগের মহিমায় উদ্ভাসিত হোক আপনার প্রতিটি মুহূর্ত।</p>
         
-        <!-- কিউট অ্যানিমেটেড গরু (ভেক্টর ইমেজ) -->
+        <!-- ইনলাইন SVG কিউট কাউ (ছবি না লোড হওয়ার ঝামেলা নেই) -->
         <div class="cow-container">
-            <img class="cow" src="https://img.icons8.com/sticker/100/cow.png" alt="Cow Animation">
+            <svg class="cow-svg" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="32" cy="36" r="22" fill="#E2E8F0"/>
+                <path d="M18 24c-3 0-6 2-6 6s3 5 6 3V24zM46 24c3 0 6 2 6 6s-3 5-6 3V24z" fill="#CBD5E1"/>
+                <ellipse cx="23" cy="22" rx="7" ry="12" fill="#475569" transform="rotate(-30 23 22)"/>
+                <ellipse cx="41" cy="22" rx="7" ry="12" fill="#475569" transform="rotate(30 41 22)"/>
+                <circle cx="24" cy="34" r="3" fill="#0f172a"/>
+                <circle cx="40" cy="34" r="3" fill="#0f172a"/>
+                <ellipse cx="32" cy="46" rx="14" ry="9" fill="#FDA4AF"/>
+                <circle cx="27" cy="45" r="1.5" fill="#E11D48"/>
+                <circle cx="37" cy="45" r="1.5" fill="#E11D48"/>
+                <path d="M16 42c0-5 3-7 5-5s0 8-5 5z" fill="#475569"/>
+                <path d="M38 22c0-3 2-5 4-2s-1 6-4 2z" fill="#475569"/>
+            </svg>
         </div>
 
-        <div class="advance">✨ আঃ আলীম আপনাকে জানাচ্ছে অগ্রিম ♥ঈদ মোবারক♥! ✨</div>
-        <button class="sound-btn">🔊 শব্দ শুনতে এখানে ক্লিক করুন</button>
+        <div class="advance">✨আঃআলিম আপনাকে জানাচ্ছে আগ্রিম ঈদের শুভেচ্ছা ♥ঈদ মোবারক♥! ✨</div>
+        <button class="sound-btn">🔊 ক্লিক করে সাউন্ড অন করুন</button>
     </div>
 
     <script>
-        // সাউন্ড প্লে এবং বাজি ফোটানোর ফাংশন
+        let audioPlayed = false;
+
+        // সাউন্ড প্লে এবং বাজি ফোটানোর মেইন ফাংশн
         function playCelebration() {
-            var audio = document.getElementById("firework-sound");
-            audio.play().catch(function(error) {
-                console.log("Audio play blocked by browser. Click again.");
-            });
+            const audio = document.getElementById("firework-sound");
             
-            // ক্লিক করলে এক্সট্রা বাজি ফুটবে
-            for (let i = 0; i < 15; i++) {
-                createFireworkParticle(event.clientX, event.clientY);
+            if (!audioPlayed) {
+                audio.play().then(() => {
+                    audioPlayed = true;
+                }).catch(err => {
+                    console.log("ব্রাউজার ব্লক করেছে, আবার ক্লিক করুন।");
+                });
+            }
+            
+            // স্ক্রিনের যেখানেই ক্লিক করবেন সেখানে এক্সট্রা বাজি ফুটবে
+            if(window.event) {
+                for (let i = 0; i < 15; i++) {
+                    createFireworkParticle(window.event.clientX, window.event.clientY);
+                }
             }
         }
 
-        // অটোমেটিক লাভ রিঅ্যাক্ট (হার্ট) তৈরি
+        // অটোমেটিক লাভ রিঅ্যাক্ট (হার্ট)
         function createHeart() {
             const heart = document.createElement('div');
             heart.classList.add('heart');
@@ -176,11 +202,9 @@
             heart.style.fontSize = Math.random() * 15 + 15 + 'px';
             document.body.appendChild(heart);
 
-            setTimeout(() => {
-                heart.remove();
-            }, 4000);
+            setTimeout(() => { heart.remove(); }, 3000);
         }
-        setInterval(createHeart, 300);
+        setInterval(createHeart, 400);
 
         // অটোমেটিক বাজি ফোটার ইফেক্ট
         function autoFirework() {
@@ -190,30 +214,27 @@
                 createFireworkParticle(x, y);
             }
         }
-        setInterval(autoFirework, 1500);
+        setInterval(autoFirework, 1200);
 
         function createFireworkParticle(x, y) {
             const p = document.createElement('div');
             p.classList.add('particle');
             
-            // র্যান্ডম কালার
             const colors = ['#ff4757', '#2ed573', '#1e90ff', '#ffa500', '#d4af37', '#ff6b81'];
             p.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
             
-            // পজিশন ও সাইজ
             p.style.left = x + 'px';
             p.style.top = y + 'px';
             p.style.width = Math.random() * 6 + 4 + 'px';
             p.style.height = p.style.width;
 
-            // বাজি ছিটকে যাওয়ার ডিরেকশন
             const angle = Math.random() * Math.PI * 2;
-            const velocity = Math.random() * 120 + 50;
+            const velocity = Math.random() * 120 + 60;
             p.style.setProperty('--x', Math.cos(angle) * velocity + 'px');
             p.style.setProperty('--y', Math.sin(angle) * velocity + 'px');
 
             document.body.appendChild(p);
-            setTimeout(() => p.remove(), 1000);
+            setTimeout(() => p.remove(), 800);
         }
     </script>
 </body>
