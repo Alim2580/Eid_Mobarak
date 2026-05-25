@@ -1,47 +1,220 @@
 <!DOCTYPE html>
-<html>
+<html lang="bn">
 <head>
-<style>
-  .container {
-    font-family: 'Arial', sans-serif;
-    text-align: center;
-    background-color: #f9f9f9;
-    padding: 30px;
-    border-radius: 15px;
-    border: 2px solid #d4af37;
-    max-width: 400px;
-    margin: auto;
-  }
-  .title {
-    color: #d4af37;
-    font-size: 24px;
-    font-weight: bold;
-  }
-  .message {
-    color: #333;
-    font-size: 18px;
-    margin: 20px 0;
-  }
-  .name {
-    color: #2c3e50;
-    font-weight: bold;
-    font-size: 20px;
-  }
-  .footer {
-    color: #777;
-    font-size: 14px;
-    margin-top: 20px;
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অগ্রিম ঈদ মোবারক - আনাবিয়া ইসলাম</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1a052e, #0b0114);
+            color: #fff;
+            font-family: 'SolaimanLipi', 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        /* কার্ড ডিজাইন */
+        .card {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(212, 175, 55, 0.5);
+            padding: 40px 30px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(212, 175, 55, 0.2);
+            max-width: 450px;
+            width: 90%;
+            z-index: 10;
+            animation: fadeIn 1.5s ease-out;
+            position: relative;
+        }
+
+        h1 {
+            color: #d4af37;
+            font-size: 32px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+        }
+
+        .name {
+            color: #ff4757;
+            font-size: 26px;
+            font-weight: bold;
+            display: block;
+            margin: 15px 0;
+            text-shadow: 0 0 8px rgba(255, 71, 87, 0.5);
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #f1f2f6;
+        }
+
+        .advance {
+            font-size: 20px;
+            color: #2ed573;
+            font-weight: bold;
+            margin-top: 25px;
+            text-shadow: 0 0 5px rgba(46, 213, 115, 0.5);
+        }
+
+        /* সাউন্ড বাটন */
+        .sound-btn {
+            background: #d4af37;
+            color: #1a052e;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+        .sound-btn:hover {
+            transform: scale(1.05);
+            background: #fff;
+        }
+
+        /* গরুর অ্যানিমেশন */
+        .cow-container {
+            margin-top: 20px;
+        }
+        .cow {
+            width: 100px;
+            height: auto;
+            animation: bounce 2s infinite ease-in-out;
+        }
+
+        /* বাজি ও লাভ রিয়্যাক্ট অ্যানিমেশন ইফেক্ট */
+        .particle {
+            position: absolute;
+            pointer-events: none;
+            border-radius: 50%;
+            animation: explode 1s ease-out forwards;
+        }
+
+        .heart {
+            position: absolute;
+            color: #ff4757;
+            font-size: 24px;
+            pointer-events: none;
+            animation: fall 3s linear infinite;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) scaleX(1); }
+            50% { transform: translateY(-15px) scaleX(1.05); }
+        }
+
+        @keyframes explode {
+            0% { transform: translate(0, 0) scale(1); opacity: 1; }
+            100% { transform: translate(var(--x), var(--y)) scale(0); opacity: 0; }
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
 </head>
-<body>
+<body onclick="playCelebration()">
 
-<div class="container">
-  <div class="title">অগ্রিম ঈদ মোবারক!</div>
-  <p class="message">প্রিয় বন্ধু <span class="name">আনাবিয়া ইসলাম</span>,</p>
-  <p class="message">আসন্ন পবিত্র ঈদুল আজহার অনেক অনেক শুভেচ্ছা ও ভালোবাসা রইল। আপনার জীবন আনন্দ ও খুশিতে ভরে উঠুক।</p>
-  <div class="footer">আঃ আলীম আপনাকে জানাচ্ছে আগ্রিম ♥️ঈদ মোবারক♥️!</div>
-</div>
+    <!-- ব্যাকগ্রাউন্ড অডিও (অনলাইন ফ্রি ফায়ারওয়ার্ক সাউন্ড) -->
+    <audio id="firework-sound" loop>
+        <source src="https://assets.mixkit.co/active_storage/sfx/1676/1676-84.wav" type="audio/wav">
+    </audio>
 
+    <div class="card">
+        <h1>অগ্রিম ঈদ মোবারক!</h1>
+        <p>প্রিয়,</p>
+        <span class="name">প্রিয় বন্ধু আনাবিয়া ইসলাম</span>
+        <p>আসন্ন পবিত্র ঈদুল আজহার অনেক অনেক শুভেচ্ছা ও ভালোবাসা রইল। ত্যাগের মহিমায় উদ্ভাসিত হোক আপনার প্রতিটি মুহূর্ত।</p>
+        
+        <!-- কিউট অ্যানিমেটেড গরু (ভেক্টর ইমেজ) -->
+        <div class="cow-container">
+            <img class="cow" src="https://img.icons8.com/sticker/100/cow.png" alt="Cow Animation">
+        </div>
+
+        <div class="advance">✨ আঃ আলীম আপনাকে জানাচ্ছে অগ্রিম ♥ঈদ মোবারক♥! ✨</div>
+        <button class="sound-btn">🔊 শব্দ শুনতে এখানে ক্লিক করুন</button>
+    </div>
+
+    <script>
+        // সাউন্ড প্লে এবং বাজি ফোটানোর ফাংশন
+        function playCelebration() {
+            var audio = document.getElementById("firework-sound");
+            audio.play().catch(function(error) {
+                console.log("Audio play blocked by browser. Click again.");
+            });
+            
+            // ক্লিক করলে এক্সট্রা বাজি ফুটবে
+            for (let i = 0; i < 15; i++) {
+                createFireworkParticle(event.clientX, event.clientY);
+            }
+        }
+
+        // অটোমেটিক লাভ রিঅ্যাক্ট (হার্ট) তৈরি
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3s + 's';
+            heart.style.fontSize = Math.random() * 15 + 15 + 'px';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+        setInterval(createHeart, 300);
+
+        // অটোমেটিক বাজি ফোটার ইফেক্ট
+        function autoFirework() {
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * (window.innerHeight * 0.6);
+            for (let i = 0; i < 20; i++) {
+                createFireworkParticle(x, y);
+            }
+        }
+        setInterval(autoFirework, 1500);
+
+        function createFireworkParticle(x, y) {
+            const p = document.createElement('div');
+            p.classList.add('particle');
+            
+            // র্যান্ডম কালার
+            const colors = ['#ff4757', '#2ed573', '#1e90ff', '#ffa500', '#d4af37', '#ff6b81'];
+            p.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            // পজিশন ও সাইজ
+            p.style.left = x + 'px';
+            p.style.top = y + 'px';
+            p.style.width = Math.random() * 6 + 4 + 'px';
+            p.style.height = p.style.width;
+
+            // বাজি ছিটকে যাওয়ার ডিরেকশন
+            const angle = Math.random() * Math.PI * 2;
+            const velocity = Math.random() * 120 + 50;
+            p.style.setProperty('--x', Math.cos(angle) * velocity + 'px');
+            p.style.setProperty('--y', Math.sin(angle) * velocity + 'px');
+
+            document.body.appendChild(p);
+            setTimeout(() => p.remove(), 1000);
+        }
+    </script>
 </body>
 </html>
